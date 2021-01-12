@@ -48,7 +48,11 @@ app.use(limiter);
 app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/dist/kunjsite')));
 // mount router
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname));
+});
 app.use('/api/V1/bootcamps', bootcampsrouter);
 app.use('/api/V1/courses', corsesRouter);
 app.use('/api/V1/auth', authcontroller);
